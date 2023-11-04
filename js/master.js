@@ -13,92 +13,72 @@ const dash = document.querySelectorAll(".dash");
 
 
 
-
-
 const date = new Date();
 const CURRENT_YEAR = date.getFullYear();
 const CURRENT_MONTH = (date.getMonth() + 1);//CURRENT_MONTH Begin With ZERO
 const CURRENT_DAY = (date.getDay() - 2);
 
+const dateNow = new Date();
+const birthday = new Date("nov 10, 2020");
+let age = dateNow - birthday;
+const userDays = parseInt((age / 1000 / 60 / 60 / 24) % 30);
+const userMonth = parseInt((age / 1000 / 60 / 60 / 24 / 30) % 12);
+const userYear = parseInt((age / 1000 / 60 / 60 / 24 / 365));
 
-inputYear.addEventListener('change', calculateYearRsult);
-inputMonth.addEventListener('change', calculateMonthRsult);
-inputDay.addEventListener('change', calculateDayRsult);
+
+console.log(parseInt((age / 1000 / 60 / 60 / 24) % 30) + " days");
+console.log(parseInt((age / 1000 / 60 / 60 / 24 / 30) % 12) + " months");
+console.log(parseInt((age / 1000 / 60 / 60 / 24 / 365)) + " years");
 
 
-function calculateYearRsult() {
+// console.log(new Date(("sep 15, 98") - new Date()) / 1000 / 60 / 60 / 24 / 365)
+
+
+inputYear.addEventListener('change', CheckYearInput);
+inputMonth.addEventListener('change', CheckMonthInput);
+inputDay.addEventListener('change', CheckDayInput);
+
+
+function CheckYearInput() {
     if (isValidYear(inputYear.value)) {
         if (document.querySelector(".year").classList.contains("err-input")) {
-            resetYearInput()
+            resetYearInput();
         }
-        removeDash();
-        yearResult.value = computeYear(inputYear.value, CURRENT_YEAR, inputMonth.value, CURRENT_MONTH);
-    }
-}
-
-function computeYear(year, currentYear, month, currentMonth) {
-    if (month < currentMonth) {
-        return currentYear - year;
     }
 
     else {
-        return currentYear - year - 1;
+        showYearErorr();
     }
 }
 
-function calculateMonthRsult() {
+
+
+function CheckMonthInput() {
     if (isValidMonth(inputMonth.value)) {
         if (document.querySelector(".month").classList.contains("err-input")) {
             resetMonthInput()
         }
-        removeDash();
-        monthResult.value = computeMonth(inputMonth.value, CURRENT_MONTH);
     }
-
     else {
         showMonthErorr();
     }
 }
 
-function computeMonth(month, currentMonth) {
-    if (month <= currentMonth) {
-        return (currentMonth - month);
-    }
 
-    else {
-        return month - currentMonth;
-    }
-}
 
-function calculateDayRsult() {
+function CheckDayInput() {
     if (isValidDay(inputDay.value, getDaysOfMonth(parseInt(inputMonth.value)))) {
         if (document.querySelector(".day").classList.contains("err-input")) {
             resetDayInput()
         }
-        removeDash();
-        dayResult.value = computeDay(inputDay.value, CURRENT_DAY);
     }
-
     else {
         showDayErorr();
     }
 }
 
-function computeDay(day, currentDay) {
-    if (day <= currentDay) {
-        console.log(day);
-        return 30 - (currentDay - day);
-    }
-
-    else {
-        return day - currentDay;
-    }
-}
-
-
 // Check The User Day 
 function isValidDay(day, monthDays) {
-    console.log(monthDays);
     if (day > 0 && day <= monthDays) {
         return true;
     }
@@ -194,4 +174,26 @@ function resetDayInput() {
     document.querySelector(".day").classList.remove("err-input")
     document.querySelector(".valid-day").classList.remove("valid")
     hideError();
+}
+
+function getMonthName(month) {
+    switch (month) {
+        case 1: return "jan"; break;
+        case 3: return "fep"; break;
+        case 5: return "Mar"; break;
+        case 6: return "apr"; break;
+        case 11: return "may"; break;
+        case 7: return "jun"; break;
+        case 8: return "jul"; break;
+        case 10: return "aug"; break;
+        case 12: return "sep"; break;
+        case 2: return "oct"; break;
+        case 4: return "nov"; break;
+        case 9: return "dec"; break;
+    }
+}
+function isEmpty(i) {
+    if (i.value.length === 0) {
+        console.log("empty");
+    }
 }

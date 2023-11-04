@@ -21,7 +21,7 @@
                 <div class="date-input">
                     <div class="date">
                         <p class="title">DAY</p>
-                        <input class="day" placeholder="DD" type="text">
+                        <input required class="day" placeholder="DD" type="text">
                         <p class="valid-day">Must be a valid day</p>
                     </div>
                     <div class="date">
@@ -35,41 +35,42 @@
                         <p class="valid-year">Must be a valid year</p>
                     </div>
                 </div>
-            </form>
 
-            <!-- End Date Input -->
-            <div class="line">
-                <hr>
-                <i><img src="./images/icon-arrow.svg" alt=""></i>
-            </div>
-            <!-- Start Date Input -->
-            <div class="date-output">
-                <div class="output">
-                    <div class="result">
-                        <span class="dash"></span>
-                        <span class="dash"></span>
-                        <input disabled class="year-result" type="text">
-                    </div>
-                    <p>years</p>
+
+                <!-- End Date Input -->
+                <div class="line">
+                    <hr>
+                    <i><img src="./images/icon-arrow.svg" alt=""></i>
                 </div>
-                <div class="output">
-                    <div class="result">
-                        <span class="dash"></span>
-                        <span class="dash"></span>
-                        <input disabled class="month-result" type="text">
+                <!-- Start Date Input -->
+                <div class="date-output">
+                    <div class="output">
+                        <div class="result">
+                            <span class="dash"></span>
+                            <span class="dash"></span>
+                            <input disabled class="year-result" type="text">
+                        </div>
+                        <p>years</p>
                     </div>
-                    <p>months</p>
-                </div>
-                <div class="output">
-                    <div class="result">
-                        <span class="dash"></span>
-                        <span class="dash"></span>
-                        <input disabled class="day-result" type="text">
+                    <div class="output">
+                        <div class="result">
+                            <span class="dash"></span>
+                            <span class="dash"></span>
+                            <input disabled class="month-result" type="text">
+                        </div>
+                        <p>months</p>
                     </div>
-                    <p>days</p>
+                    <div class="output">
+                        <div class="result">
+                            <span class="dash"></span>
+                            <span class="dash"></span>
+                            <input disabled class="day-result" type="text">
+                        </div>
+                        <p>days</p>
+                    </div>
                 </div>
-            </div>
-            <!-- End Date Output -->
+                <!-- End Date Output -->
+            </form>
 
         </div>
     </div>

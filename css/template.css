@@ -29,6 +29,8 @@ html {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--light-grey);
+    display: flex;
+    justify-content: center;
 }
 
 .container {
@@ -60,17 +62,22 @@ body {
 /* End Global Rules */
 
 .template {
+    margin-top: 20px;
+}
+
+.template .container {
     max-width: 700px;
-    display: flex;
-    justify-content: center;
-    margin: 63px auto;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* margin: 63px auto; */
     background-color: var(--White);
     padding: 30px;
     border-radius: 10px 10px 100px 10px;
+    /* text-align: center; */
 }
 
 @media(max-width: 767px) {
-    .template {
+    .template .container {
         max-width: 350px;
     }
 
@@ -82,6 +89,7 @@ body {
 }
 
 .template .date-input .date {
+    /* display: flex; */
     padding: 20px;
 }
 
@@ -103,24 +111,32 @@ body {
 }
 
 @media(max-width: 767px) {
+    .template .date-input .date .title {
+        font-size: 13px;
+    }
 
     .template .date-input .date .year,
     .template .date-input .date .month,
     .template .date-input .date .day {
-        font-size: 14px;
-        width: 80px;
+        font-size: 13px;
+        width: 60px;
         font-weight: var(--bolder-weight);
         padding: 10px 20px;
         border-radius: 10px;
         cursor: pointer;
     }
 
+    .template .date-input .date {
+        /* display: flex; */
+        padding: 10px;
+    }
+
 }
 
-
+/* 
 .template .date-input .date input:focus {
     color: var(--charcoal-grey);
-}
+} */
 
 @media(max-width:767px) {
     .template .date-input .date input {
@@ -171,10 +187,8 @@ body {
 /* Start Hr LIne */
 .template .line {
     display: flex;
-    text-align: center;
-    justify-content: start;
+    /* text-align: center; */
     align-items: center;
-    position: relative;
     cursor: pointer;
 }
 
@@ -211,18 +225,18 @@ body {
     }
 }
 
-.template .line i img {
-    display: flex;
+.template .line img {
+    /* display: flex; */
     background-color: var(--secondry-color);
     border-radius: 50%;
     padding: 20px;
     transition: 0.3s;
 }
 
-.template .line i img:hover {
+.template .line img:hover {
     background-color: var(--charcoal-grey);
-    animation-duration: 4s;
-    left: 10px;
+    /* animation-duration: 4s; */
+    /* left: 10px; */
     transform: rotate(360deg);
 }
 
