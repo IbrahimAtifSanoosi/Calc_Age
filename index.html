@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Main Template CSS File -->
+    <link rel="stylesheet" href="css/template.css">
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- Normlize CSS -->
+    <link rel="stylesheet" href="css/normlize.css">
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <div class="template">
+        <div class="container">
+            <!-- Start Date Input -->
+            <form action="">
+                <div class="date-input">
+                    <div class="date">
+                        <p class="title">DAY</p>
+                        <input class="day" placeholder="DD" type="text">
+                        <p class="valid-day">Must be a valid day</p>
+                    </div>
+                    <div class="date">
+                        <p class="title">MONTH</p>
+                        <span class="err"><input class="month" placeholder="MM" type="text"></span>
+                        <p class="valid-month">Must be a valid month</p>
+                    </div>
+                    <div class="date">
+                        <p class="title">YEAR</p>
+                        <span class="err"><input class="year" placeholder="YYYY" type="text"></span>
+                        <p class="valid-year">Must be a valid year</p>
+                    </div>
+                </div>
+            </form>
+
+            <!-- End Date Input -->
+            <div class="line">
+                <hr>
+                <i><img src="./images/icon-arrow.svg" alt=""></i>
+            </div>
+            <!-- Start Date Input -->
+            <div class="date-output">
+                <div class="output">
+                    <div class="result">
+                        <span class="dash"></span>
+                        <span class="dash"></span>
+                        <input disabled class="year-result" type="text">
+                    </div>
+                    <p>years</p>
+                </div>
+                <div class="output">
+                    <div class="result">
+                        <span class="dash"></span>
+                        <span class="dash"></span>
+                        <input disabled class="month-result" type="text">
+                    </div>
+                    <p>months</p>
+                </div>
+                <div class="output">
+                    <div class="result">
+                        <span class="dash"></span>
+                        <span class="dash"></span>
+                        <input disabled class="day-result" type="text">
+                    </div>
+                    <p>days</p>
+                </div>
+            </div>
+            <!-- End Date Output -->
+
+        </div>
+    </div>
+    <!-- Javascript File -->
+    <script src="./js/master.js"></script>
+</body>
+
+</html>

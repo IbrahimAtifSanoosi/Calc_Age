@@ -1,0 +1,328 @@
+/* Start Variables */
+:root {
+    --off-white: hsl(0, 0%, 94%);
+    --off-black: hsl(0, 0%, 8%);
+    --light-grey: hsl(0, 0%, 86%);
+    --charcoal-grey: hsl(235, 18%, 26%);
+    --smokey-grey: hsl(0, 1%, 44%);
+    --White: hsl(0, 0%, 100%);
+    --secondry-color: rgb(152, 72, 228);
+    --error-color: red;
+    --input-font-size: 65px;
+    --bold-weight: 400;
+    --bolder-weight: 700;
+    --boldest-weight: 800;
+}
+
+/* End Variables */
+/* Start Global Rules */
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-grey);
+}
+
+.container {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Small */
+@media (min-width:768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+/* Medium */
+@media (min-width:992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+/* Large */
+@media (min-width:1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+/* End Global Rules */
+
+.template {
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    margin: 63px auto;
+    background-color: var(--White);
+    padding: 30px;
+    border-radius: 10px 10px 100px 10px;
+}
+
+@media(max-width: 767px) {
+    .template {
+        max-width: 350px;
+    }
+
+}
+
+/* Start Date Input */
+.template .date-input {
+    display: flex;
+}
+
+.template .date-input .date {
+    padding: 20px;
+}
+
+.template .date-input .date .title {
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    font-weight: var(--bolder-weight);
+}
+
+.template .date-input .date .year,
+.template .date-input .date .month,
+.template .date-input .date .day {
+    font-size: 20px;
+    width: 110px;
+    font-weight: var(--bolder-weight);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media(max-width: 767px) {
+
+    .template .date-input .date .year,
+    .template .date-input .date .month,
+    .template .date-input .date .day {
+        font-size: 14px;
+        width: 80px;
+        font-weight: var(--bolder-weight);
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+}
+
+
+.template .date-input .date input:focus {
+    color: var(--charcoal-grey);
+}
+
+@media(max-width:767px) {
+    .template .date-input .date input {
+        font-size: 13px;
+        width: 70px;
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+/* End Date Input */
+/* Start Erorr Meassage Part */
+
+.template .date-input .date .paragraph-red {
+    margin-bottom: 10 px;
+    letter-spacing: 3px;
+    font-weight: var(--bolder-weight);
+    color: var(--error-color);
+}
+
+.template .date-input .date .err-input {
+    font-size: 20px;
+    font-weight: var(--bolder-weight);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--error-color);
+
+}
+
+.template .date-input .date .valid-day,
+.template .date-input .date .valid-month,
+.template .date-input .date .valid-year {
+    display: none;
+
+}
+
+.template .date-input .date .valid {
+    margin: 10px -20px 0px 0px;
+    font-weight: var(--bold-weight);
+    color: var(--error-color);
+    font-size: 13px;
+    opacity: 0.6;
+    display: block;
+}
+
+/* End Erorr Meassage Part */
+
+/* Start Hr LIne */
+.template .line {
+    display: flex;
+    text-align: center;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.template .line hr {
+    width: 90%;
+}
+
+@media(max-width:767px) {
+    hr {
+        width: 100%;
+    }
+}
+
+@media (max-width:992px) {
+    hr {
+        width: 100%;
+    }
+}
+
+.template .line i {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+@media(max-width:767px) {
+    .template .line {
+        padding: 30px 0px;
+        justify-content: center;
+    }
+
+    .template .line i {
+        position: absolute;
+    }
+}
+
+.template .line i img {
+    display: flex;
+    background-color: var(--secondry-color);
+    border-radius: 50%;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.template .line i img:hover {
+    background-color: var(--charcoal-grey);
+    animation-duration: 4s;
+    left: 10px;
+    transform: rotate(360deg);
+}
+
+@media(max-width:767px) {
+    .template .line i img {
+        padding: 10px;
+    }
+}
+
+/* End Hr LIne */
+
+/* Start Output Part */
+.template .date-output {
+    padding: 20px;
+    /* display: flex; */
+
+}
+
+.template .date-output .output {
+    display: flex;
+    justify-content: start;
+    /* align-items: flex-start; */
+}
+
+@media(max-width: 767px) {
+    .template .date-output .output {
+        justify-content: center;
+        align-items: start;
+        /* text-align: center; */
+    }
+}
+
+.template .date-output .output .result input {
+    width: 100px;
+    font-size: var(--input-font-size);
+    border-style: none;
+    font-weight: var(--boldest-weight);
+    color: var(--secondry-color);
+    padding-bottom: 10px;
+    background-color: var(--White);
+    text-align: center;
+}
+
+
+
+@media(max-width: 767px) {
+    .template .date-output .output .result input {
+        font-size: 60px;
+    }
+
+    .template .date-output .output .month-result {
+        text-align: end;
+    }
+}
+
+.template .date-output .output .result {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.template .date-output .output .result .dash {
+    width: 30px;
+    height: 13px;
+    right: 10px;
+    top: 50%;
+    background-color: var(--secondry-color);
+    position: absolute;
+    /* display: none; */
+
+}
+
+@media(max-width: 767px) {
+    .template .date-output .output .result .dash {
+        top: 20px;
+    }
+}
+
+.template .date-output .output .result span:first-child {
+
+    right: 10px;
+}
+
+
+.template .date-output .output .result span:nth-child(2) {
+    left: 0;
+}
+
+.template .date-output .output p {
+    font-size: var(--input-font-size);
+    font-weight: var(--boldest-weight);
+    padding-left: 10px;
+}
+
+@media(max-width: 767px) {
+    .template .date-output .output p {
+        font-size: 50px;
+        font-weight: var(--boldest-weight);
+        /* padding-left: 10px; */
+    }
+}
+
+/* End Output Part */
