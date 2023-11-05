@@ -91,6 +91,7 @@ body {
 .template .date-input .date {
     /* display: flex; */
     padding: 20px;
+    color: var(--smokey-grey)
 }
 
 .template .date-input .date .title {
@@ -103,7 +104,7 @@ body {
 .template .date-input .date .month,
 .template .date-input .date .day {
     font-size: 20px;
-    width: 110px;
+    max-width: 110px;
     font-weight: var(--bolder-weight);
     padding: 10px 20px;
     border-radius: 10px;
@@ -119,11 +120,11 @@ body {
     .template .date-input .date .month,
     .template .date-input .date .day {
         font-size: 13px;
-        width: 60px;
+        max-width: 80px;
+        height: 50px;
         font-weight: var(--bolder-weight);
-        padding: 10px 20px;
+        padding: 10px;
         border-radius: 10px;
-        cursor: pointer;
     }
 
     .template .date-input .date {
@@ -133,15 +134,15 @@ body {
 
 }
 
-/* 
+
 .template .date-input .date input:focus {
     color: var(--charcoal-grey);
-} */
+}
 
 @media(max-width:767px) {
     .template .date-input .date input {
         font-size: 13px;
-        width: 70px;
+        /* width: 70px; */
         padding: 10px;
         text-align: center;
     }
@@ -159,27 +160,50 @@ body {
 
 .template .date-input .date .err-input {
     font-size: 20px;
+    padding: 10px;
     font-weight: var(--bolder-weight);
-    padding: 10px 20px;
     border-radius: 10px;
     border: 1px solid var(--error-color);
 
+}
+
+@media(max-width: 767px) {
+    .template .date-input .date .err-input {
+        font-size: 13px;
+        padding: 10px;
+    }
 }
 
 .template .date-input .date .valid-day,
 .template .date-input .date .valid-month,
 .template .date-input .date .valid-year {
     display: none;
-
-}
-
-.template .date-input .date .valid {
-    margin: 10px -20px 0px 0px;
+    /* padding-top: 10px;
     font-weight: var(--bold-weight);
     color: var(--error-color);
     font-size: 13px;
     opacity: 0.6;
     display: block;
+    max-width: 110px; */
+}
+
+@media(max-width: 767px) {
+
+    .template .date-input .date .valid-day,
+    .template .date-input .date .valid-month,
+    .template .date-input .date .valid-year {
+        max-width: 80px;
+    }
+}
+
+.template .date-input .date .valid {
+    margin-top: 10px;
+    font-weight: var(--bold-weight);
+    color: var(--error-color);
+    font-size: 13px;
+    opacity: 0.6;
+    display: block;
+    max-width: 110px;
 }
 
 /* End Erorr Meassage Part */
@@ -187,9 +211,20 @@ body {
 /* Start Hr LIne */
 .template .line {
     display: flex;
-    /* text-align: center; */
+    text-align: center;
+    justify-content: start;
     align-items: center;
+    /* position: relative; */
     cursor: pointer;
+    margin-top: 10px;
+}
+
+@media(max-width: 767px) {
+    .template .line {
+        margin-top: 50px;
+        margin-bottom: 30px;
+
+    }
 }
 
 .template .line hr {
@@ -199,6 +234,7 @@ body {
 @media(max-width:767px) {
     hr {
         width: 100%;
+        /* display: none; */
     }
 }
 
@@ -211,12 +247,11 @@ body {
 .template .line i {
     display: flex;
     align-items: center;
-    position: relative;
+    /* position: relative; */
 }
 
 @media(max-width:767px) {
     .template .line {
-        padding: 30px 0px;
         justify-content: center;
     }
 
@@ -226,7 +261,6 @@ body {
 }
 
 .template .line img {
-    /* display: flex; */
     background-color: var(--secondry-color);
     border-radius: 50%;
     padding: 20px;
@@ -235,8 +269,6 @@ body {
 
 .template .line img:hover {
     background-color: var(--charcoal-grey);
-    /* animation-duration: 4s; */
-    /* left: 10px; */
     transform: rotate(360deg);
 }
 
@@ -251,40 +283,40 @@ body {
 /* Start Output Part */
 .template .date-output {
     padding: 20px;
-    /* display: flex; */
-
 }
 
 .template .date-output .output {
     display: flex;
-    justify-content: start;
+    /* justify-content: start; */
     /* align-items: flex-start; */
 }
 
 @media(max-width: 767px) {
     .template .date-output .output {
-        justify-content: center;
-        align-items: start;
-        /* text-align: center; */
+        align-items: center;
     }
 }
 
 .template .date-output .output .result input {
-    width: 100px;
+
+    /* position: absolute; */
+    max-width: 100px;
     font-size: var(--input-font-size);
     border-style: none;
     font-weight: var(--boldest-weight);
     color: var(--secondry-color);
     padding-bottom: 10px;
     background-color: var(--White);
-    text-align: center;
+    text-align: start;
+
 }
 
 
 
 @media(max-width: 767px) {
     .template .date-output .output .result input {
-        font-size: 60px;
+        width: 65px;
+        font-size: 40px;
     }
 
     .template .date-output .output .month-result {
@@ -294,32 +326,29 @@ body {
 
 .template .date-output .output .result {
     display: flex;
-    justify-content: space-between;
+    /* align-items: center; */
+    justify-content: center;
     position: relative;
 }
 
 .template .date-output .output .result .dash {
     width: 30px;
     height: 13px;
-    right: 10px;
-    top: 50%;
+    margin-top: 30px;
+    /* top: 70%; */
     background-color: var(--secondry-color);
     position: absolute;
-    /* display: none; */
-
-}
-
-@media(max-width: 767px) {
-    .template .date-output .output .result .dash {
-        top: 20px;
-    }
 }
 
 .template .date-output .output .result span:first-child {
-
     right: 10px;
 }
 
+@media(max-width: 767px) {
+    .template .date-output .output .result span:first-child {
+        right: 0px;
+    }
+}
 
 .template .date-output .output .result span:nth-child(2) {
     left: 0;
@@ -328,14 +357,13 @@ body {
 .template .date-output .output p {
     font-size: var(--input-font-size);
     font-weight: var(--boldest-weight);
-    padding-left: 10px;
 }
 
 @media(max-width: 767px) {
     .template .date-output .output p {
-        font-size: 50px;
+        font-size: 40px;
         font-weight: var(--boldest-weight);
-        /* padding-left: 10px; */
+        padding-right: 10px;
     }
 }
 

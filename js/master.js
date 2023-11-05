@@ -10,37 +10,24 @@ const dayErrorP = document.querySelector(".valid-day")
 const monthErrorP = document.querySelector(".valid-month")
 const yearErrorP = document.querySelector(".valid-year")
 const dash = document.querySelectorAll(".dash");
+const btn = document.querySelector(".button");
+
+// For Keep Checking Current 
+const CURRENT_YEAR = new Date().getFullYear();
 
 
 
-const date = new Date();
-const CURRENT_YEAR = date.getFullYear();
-const CURRENT_MONTH = (date.getMonth() + 1);//CURRENT_MONTH Begin With ZERO
-const CURRENT_DAY = (date.getDay() - 2);
+btn.addEventListener('click', function () {
+    CheckYearInput(inputYear.value);
+    CheckMonthInput(inputMonth.value);
+    CheckDayInput(inputDay.value, getDaysOfMonth(parseInt(inputMonth.value)));
+    if (isValidYear(inputYear.value) && isValidMonth(inputMonth.value) && isValidDay(inputDay.value, getDaysOfMonth(parseInt(inputMonth.value)))) {
+        computeAge(inputYear.value, inputMonth.value, inputDay.value);
+    }
+});
 
-const dateNow = new Date();
-const birthday = new Date("nov 10, 2020");
-let age = dateNow - birthday;
-const userDays = parseInt((age / 1000 / 60 / 60 / 24) % 30);
-const userMonth = parseInt((age / 1000 / 60 / 60 / 24 / 30) % 12);
-const userYear = parseInt((age / 1000 / 60 / 60 / 24 / 365));
-
-
-console.log(parseInt((age / 1000 / 60 / 60 / 24) % 30) + " days");
-console.log(parseInt((age / 1000 / 60 / 60 / 24 / 30) % 12) + " months");
-console.log(parseInt((age / 1000 / 60 / 60 / 24 / 365)) + " years");
-
-
-// console.log(new Date(("sep 15, 98") - new Date()) / 1000 / 60 / 60 / 24 / 365)
-
-
-inputYear.addEventListener('change', CheckYearInput);
-inputMonth.addEventListener('change', CheckMonthInput);
-inputDay.addEventListener('change', CheckDayInput);
-
-
-function CheckYearInput() {
-    if (isValidYear(inputYear.value)) {
+function CheckYearInput(year) {
+    if (isValidYear(year)) {
         if (document.querySelector(".year").classList.contains("err-input")) {
             resetYearInput();
         }
@@ -51,9 +38,7 @@ function CheckYearInput() {
     }
 }
 
-
-
-function CheckMonthInput() {
+function CheckMonthInput(month) {
     if (isValidMonth(inputMonth.value)) {
         if (document.querySelector(".month").classList.contains("err-input")) {
             resetMonthInput()
@@ -64,10 +49,8 @@ function CheckMonthInput() {
     }
 }
 
-
-
-function CheckDayInput() {
-    if (isValidDay(inputDay.value, getDaysOfMonth(parseInt(inputMonth.value)))) {
+function CheckDayInput(day, monthDays) {
+    if (isValidDay(day, monthDays)) {
         if (document.querySelector(".day").classList.contains("err-input")) {
             resetDayInput()
         }
@@ -98,7 +81,6 @@ function isValidMonth(month) {
 // Check The User Year
 function isValidYear(year) {
     if (year > 0 && year <= CURRENT_YEAR) {
-        console.log("Year Ok");
         return true;
     }
     else {
@@ -176,24 +158,23 @@ function resetDayInput() {
     hideError();
 }
 
-function getMonthName(month) {
-    switch (month) {
-        case 1: return "jan"; break;
-        case 3: return "fep"; break;
-        case 5: return "Mar"; break;
-        case 6: return "apr"; break;
-        case 11: return "may"; break;
-        case 7: return "jun"; break;
-        case 8: return "jul"; break;
-        case 10: return "aug"; break;
-        case 12: return "sep"; break;
-        case 2: return "oct"; break;
-        case 4: return "nov"; break;
-        case 9: return "dec"; break;
-    }
-}
 function isEmpty(i) {
     if (i.value.length === 0) {
         console.log("empty");
     }
+}
+
+function computeAge(year, month, day) {
+    removeDash();
+    const dateNow = new Date();
+    let _y = year.toString();
+    let _m = month.toString();
+    let _d = day.toString();
+    let inputDate = [_y, _m, _d].join(' ')
+    const birthday = new Date(inputDate);
+    console.log(birthday);
+    let age = dateNow - birthday;
+    dayResult.value = parseInt((age / 1000 / 60 / 60 / 24) % 30);
+    monthResult.value = parseInt((age / 1000 / 60 / 60 / 24 / 30) % 12);
+    yearResult.value = parseInt((age / 1000 / 60 / 60 / 24 / 365));
 }
