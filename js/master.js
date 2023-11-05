@@ -15,8 +15,6 @@ const btn = document.querySelector(".button");
 // For Keep Checking Current 
 const CURRENT_YEAR = new Date().getFullYear();
 
-
-
 btn.addEventListener('click', function () {
     CheckYearInput(inputYear.value);
     CheckMonthInput(inputMonth.value);
@@ -25,14 +23,11 @@ btn.addEventListener('click', function () {
         computeAge(inputYear.value, inputMonth.value, inputDay.value);
     }
 });
-
+// console.log(isYearEmpty(inputYear));
 function CheckYearInput(year) {
     if (isValidYear(year)) {
-        if (document.querySelector(".year").classList.contains("err-input")) {
-            resetYearInput();
-        }
+        resetYearInput();
     }
-
     else {
         showYearErorr();
     }
@@ -40,9 +35,7 @@ function CheckYearInput(year) {
 
 function CheckMonthInput(month) {
     if (isValidMonth(inputMonth.value)) {
-        if (document.querySelector(".month").classList.contains("err-input")) {
-            resetMonthInput()
-        }
+        resetMonthInput()
     }
     else {
         showMonthErorr();
@@ -51,9 +44,7 @@ function CheckMonthInput(month) {
 
 function CheckDayInput(day, monthDays) {
     if (isValidDay(day, monthDays)) {
-        if (document.querySelector(".day").classList.contains("err-input")) {
-            resetDayInput()
-        }
+        resetDayInput();
     }
     else {
         showDayErorr();
@@ -114,53 +105,66 @@ function removeDash() {
 
 // If Year Input Is Not Valid
 function showYearErorr() {
-    // Make Title Red (p)
     titlePargraph.forEach(el => el.classList.add("paragraph-red"))
     document.querySelector(".year").classList.add("err-input");
-    document.querySelector(".valid-year").classList.add("valid");
+    if (isEmpty(inputYear)) {
+        document.querySelector(".valid-year").innerText = "This field is required";
+    }
+    else {
+        document.querySelector(".valid-year").innerText = "Must be in the past";
+    }
 }
 
 // If Month Input Is Not Valid
 function showMonthErorr() {
-    // Make Title Red (p)
     titlePargraph.forEach(el => el.classList.add("paragraph-red"))
     document.querySelector(".month").classList.add("err-input");
-    document.querySelector(".valid-month").classList.add("valid");
+    if (isEmpty(inputMonth)) {
+        document.querySelector(".valid-month").innerText = "This field is required";
+    }
+    else {
+        document.querySelector(".valid-month").innerText = "Must be valid month";
+    }
 }
 
 // If Day Input Is Not Valid
 function showDayErorr() {
-    // Make Title Red (p)
     titlePargraph.forEach(el => el.classList.add("paragraph-red"))
     document.querySelector(".day").classList.add("err-input");
-    document.querySelector(".valid-day").classList.add("valid");
+    if (isEmpty(inputDay)) {
+        document.querySelector(".valid-day").innerText = "This field is required";
+    }
+    else {
+        document.querySelector(".valid-day").innerText = "Must be valid day";
+
+    }
+}
+
+function resetYearInput() {
+    document.querySelector(".valid-year").innerText = "";
+    document.querySelector(".year").classList.remove("err-input");
+    hideError();
+}
+
+function resetMonthInput() {
+    document.querySelector(".valid-month").innerText = "";
+    document.querySelector(".month").classList.remove("err-input");
+    hideError();
+}
+
+function resetDayInput() {
+    document.querySelector(".valid-day").innerText = "";
+    document.querySelector(".day").classList.remove("err-input");
+    hideError();
 }
 
 function hideError() {
     titlePargraph.forEach(el => el.classList.remove("paragraph-red"))
 }
 
-function resetYearInput() {
-    document.querySelector(".year").classList.remove("err-input")
-    document.querySelector(".valid-year").classList.remove("valid")
-    hideError();
-}
-
-function resetMonthInput() {
-    document.querySelector(".month").classList.remove("err-input")
-    document.querySelector(".valid-month").classList.remove("valid")
-    hideError();
-}
-
-function resetDayInput() {
-    document.querySelector(".day").classList.remove("err-input")
-    document.querySelector(".valid-day").classList.remove("valid")
-    hideError();
-}
-
-function isEmpty(i) {
-    if (i.value.length === 0) {
-        console.log("empty");
+function isEmpty(input) {
+    if (input.value.length === 0) {
+        return true;
     }
 }
 

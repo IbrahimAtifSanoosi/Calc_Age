@@ -106,9 +106,11 @@ body {
     font-size: 20px;
     max-width: 110px;
     font-weight: var(--bolder-weight);
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 5px;
     cursor: pointer;
+    border: 1px solid var(--smokey-grey);
+    z-index: 4;
 }
 
 @media(max-width: 767px) {
@@ -124,7 +126,7 @@ body {
         height: 50px;
         font-weight: var(--bolder-weight);
         padding: 10px;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 
     .template .date-input .date {
@@ -162,7 +164,7 @@ body {
     font-size: 20px;
     padding: 10px;
     font-weight: var(--bolder-weight);
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid var(--error-color);
 
 }
@@ -177,14 +179,13 @@ body {
 .template .date-input .date .valid-day,
 .template .date-input .date .valid-month,
 .template .date-input .date .valid-year {
-    display: none;
-    /* padding-top: 10px;
+    margin-top: 10px;
     font-weight: var(--bold-weight);
     color: var(--error-color);
-    font-size: 13px;
     opacity: 0.6;
     display: block;
-    max-width: 110px; */
+    max-width: 110px;
+    font-size: 12px;
 }
 
 @media(max-width: 767px) {
@@ -196,15 +197,6 @@ body {
     }
 }
 
-.template .date-input .date .valid {
-    margin-top: 10px;
-    font-weight: var(--bold-weight);
-    color: var(--error-color);
-    font-size: 13px;
-    opacity: 0.6;
-    display: block;
-    max-width: 110px;
-}
 
 /* End Erorr Meassage Part */
 
