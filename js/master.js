@@ -174,7 +174,7 @@ function computeAge(year, month, day) {
     const birthday = new Date(inputDate);
     console.log(birthday);
     let age = dateNow - birthday;
-    dayResult.value = parseInt((age / 1000 / 60 / 60 / 24) % 30);
-    monthResult.value = parseInt((age / 1000 / 60 / 60 / 24 / 30) % 12);
-    yearResult.value = parseInt((age / 1000 / 60 / 60 / 24 / 365));
+    dayResult.value = parseInt((age / (1000 * 60 * 60 * 24)) % 30.4);
+    monthResult.value = parseInt((age / (1000 * 60 * 60 * 24 * 30)) % 12);
+    yearResult.value = parseInt((age / (365 * 24 * 60 * 60 * 1000)));
 }
