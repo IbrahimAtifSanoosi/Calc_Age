@@ -11,90 +11,100 @@ const monthErrorP = document.querySelector(".valid-month")
 const yearErrorP = document.querySelector(".valid-year")
 const dash = document.querySelectorAll(".dash");
 const btn = document.querySelector(".button");
-
 // For Keep Checking Current 
 const CURRENT_YEAR = new Date().getFullYear();
-
 btn.addEventListener('click', function () {
-    CheckYearInput(inputYear.value);
-    CheckMonthInput(inputMonth.value);
-    CheckDayInput(inputDay.value, getDaysOfMonth(parseInt(inputMonth.value)));
-    if (isValidYear(inputYear.value) && isValidMonth(inputMonth.value) && isValidDay(inputDay.value, getDaysOfMonth(parseInt(inputMonth.value)))) {
+    resetField(yearErrorP, inputYear);
+    resetField(monthErrorP, inputMonth);
+    resetField(dayErrorP, inputDay);
+
+    let yearValidation = isValidYear(inputYear.value);
+    let monthValidation = isValidMonth(inputMonth.value);
+    let dayValidation = isValidDay(inputDay.value, getDaysOfMonth(parseInt(inputMonth.value), parseInt(inputYear.value)));
+
+    if (!yearValidation.isSuccess) {
+        showErorr(inputYear, yearErrorP, yearValidation.error);
+    }
+
+    if (!monthValidation.isSuccess) {
+        showErorr(inputMonth, monthErrorP, monthValidation.error);
+    }
+
+    if (!dayValidation.isSuccess) {
+        showErorr(inputDay, dayErrorP, dayValidation.error);
+    }
+
+    if (yearValidation.isSuccess && monthValidation.isSuccess && dayValidation.isSuccess) {
         computeAge(inputYear.value, inputMonth.value, inputDay.value);
     }
 });
-// console.log(isYearEmpty(inputYear));
-function CheckYearInput(year) {
-    if (isValidYear(year)) {
-        resetYearInput();
-    }
-    else {
-        showYearErorr();
-    }
-}
-
-function CheckMonthInput(month) {
-    if (isValidMonth(inputMonth.value)) {
-        resetMonthInput()
-    }
-    else {
-        showMonthErorr();
-    }
-}
-
-function CheckDayInput(day, monthDays) {
-    if (isValidDay(day, monthDays)) {
-        resetDayInput();
-    }
-    else {
-        showDayErorr();
-    }
-}
-
 // Check The User Day 
 function isValidDay(day, monthDays) {
-    if (day > 0 && day <= monthDays) {
-        return true;
+    if (isEmpty(day)) {
+        return { isSuccess: false, error: "Field is required" };
+    }
+    if (day > monthDays) {
+        return { isSuccess: false, error: "Must be valid day" };
     }
     else {
-        showDayErorr();
+        return { isSuccess: true }
     }
 }
 // Check The User Month
 function isValidMonth(month) {
-    if (month > 0 && month <= 12) {
-        return true;
+    if (isEmpty(month)) {
+        return { isSuccess: false, error: "Field is required" };
+    }
+    if (month < 0) {
+        return { isSuccess: false, error: "Must be greater than 0" };
+    }
+
+    if (month > 12) {
+        return { isSuccess: false, error: "Must be valid month" };
     }
     else {
-        showMonthErorr();
+        return { isSuccess: true }
     }
 }
 // Check The User Year
 function isValidYear(year) {
-    if (year > 0 && year <= CURRENT_YEAR) {
-        return true;
+    if (isEmpty(year)) {
+        return { isSuccess: false, error: "Field is required" };
+    }
+
+    if (year < 0) {
+        return { isSuccess: false, error: "Must be greater than 0" };
+    }
+
+    if (year > CURRENT_YEAR) {
+        return { isSuccess: false, error: "Must be in the past" };
     }
     else {
-        showYearErorr();
+        return { isSuccess: true }
     }
 }
 
 // Get The Number Of Days In Month (If It's 30 || 28 || 31 Days)
-function getDaysOfMonth(month) {
+function getDaysOfMonth(month, year) {
     switch (month) {
-        case 1: return 31; break;
-        case 3: return 31; break;
-        case 5: return 31; break;
-        case 6: return 31; break;
-        case 7: return 31; break;
-        case 8: return 31; break;
-        case 10: return 31; break;
-        case 12: return 31; break;
-        case 2: return 28; break;
-        case 4: return 30; break;
-        case 9: return 30; break;
-        case 11: return 30; break;
-        default: return 31;
+        case 1: case 3: case 5: case 6: case 7: case 8: case 10: case 12:
+            return 31;
+            break;
+        case 2:
+            return getFebruaryDays(year);
+            break;
+        case 4: case 9: case 11:
+            return 30;
+            break;
+    }
+}
+
+function getFebruaryDays(year) {
+    if (year % 4 == 0 && year % 100 == 0) {
+        return 29;
+    }
+    else {
+        return 28;
     }
 }
 
@@ -104,57 +114,15 @@ function removeDash() {
 }
 
 // If Year Input Is Not Valid
-function showYearErorr() {
+function showErorr(input, paragraph, error) {
     titlePargraph.forEach(el => el.classList.add("paragraph-red"))
-    document.querySelector(".year").classList.add("err-input");
-    if (isEmpty(inputYear)) {
-        document.querySelector(".valid-year").innerText = "This field is required";
-    }
-    else {
-        document.querySelector(".valid-year").innerText = "Must be in the past";
-    }
+    input.classList.add("err-input");
+    paragraph.innerText = error;
 }
 
-// If Month Input Is Not Valid
-function showMonthErorr() {
-    titlePargraph.forEach(el => el.classList.add("paragraph-red"))
-    document.querySelector(".month").classList.add("err-input");
-    if (isEmpty(inputMonth)) {
-        document.querySelector(".valid-month").innerText = "This field is required";
-    }
-    else {
-        document.querySelector(".valid-month").innerText = "Must be valid month";
-    }
-}
-
-// If Day Input Is Not Valid
-function showDayErorr() {
-    titlePargraph.forEach(el => el.classList.add("paragraph-red"))
-    document.querySelector(".day").classList.add("err-input");
-    if (isEmpty(inputDay)) {
-        document.querySelector(".valid-day").innerText = "This field is required";
-    }
-    else {
-        document.querySelector(".valid-day").innerText = "Must be valid day";
-
-    }
-}
-
-function resetYearInput() {
-    document.querySelector(".valid-year").innerText = "";
-    document.querySelector(".year").classList.remove("err-input");
-    hideError();
-}
-
-function resetMonthInput() {
-    document.querySelector(".valid-month").innerText = "";
-    document.querySelector(".month").classList.remove("err-input");
-    hideError();
-}
-
-function resetDayInput() {
-    document.querySelector(".valid-day").innerText = "";
-    document.querySelector(".day").classList.remove("err-input");
+function resetField(paragraph, field) {
+    paragraph.innerText = "";
+    field.classList.remove("err-input");
     hideError();
 }
 
@@ -163,7 +131,7 @@ function hideError() {
 }
 
 function isEmpty(input) {
-    if (input.value.length === 0) {
+    if (input.length === 0) {
         return true;
     }
 }
